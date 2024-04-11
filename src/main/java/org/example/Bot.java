@@ -34,18 +34,18 @@ public class Bot extends TelegramLongPollingBot {
         var lastName = user.getLastName();
 
 
-        forwardMessage(id,msg.getText(),msg.getMessageId());
-        System.out.println(update);
-        switch (msg.getText()){
+        forwardMessage(id,msg.getText(),msg.getMessageId()); //персылка сообщений в мой час с ботом
+        System.out.println(update);                          //вывод данных в консоль
+        switch (msg.getText()){                              //получение команды
             case "/start":
                 if (Objects.isNull(userName)){
                     sendMessage(id, "Привет, " + user.getFirstName() + "!");
                 }else {
                     sendMessage(id, "Привет, " + user.getUserName() + "!");
                 };
-            break;
+                break;
             case "/help": sendMessage(id, user.getFirstName() + ", это мой первый бот на котором я отрабатываю азы Java.");
-            break;
+                break;
             default: sendMessage(id, "Введена не верная команда, попробуй /start или /help");
         }
     }
