@@ -9,25 +9,25 @@ import java.util.ArrayList;
 
 public class Buttons {
     public static SendMessage button (Long cid){
-        SendMessage sm = new SendMessage();
+        SendMessage sm = new SendMessage();         //отправка начального сообщения
         sm.setChatId(cid.toString());
         sm.setText("Выберите один из вариантов");
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-        List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
-        List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
-        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Send Hi");
-        inlineKeyboardButton1.setCallbackData("Hi");
+        List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();            //массив строк
+        List<InlineKeyboardButton> rowInline1 = new ArrayList<>();                  //массив одной строки
+        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();    //первая кнопка
+        inlineKeyboardButton1.setText("Send Hi");                                   //надпись на кнопке
+        inlineKeyboardButton1.setCallbackData("Hi");                                //инфа для меня как обрабатывать нажатие
 
-        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
+        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();    //2ая кнопка
         inlineKeyboardButton2.setText("Help");
         inlineKeyboardButton2.setCallbackData("Help");
 
-        rowInline1.add(inlineKeyboardButton1);
+        rowInline1.add(inlineKeyboardButton1);                                      //добавление кнопок в строку
         rowInline1.add(inlineKeyboardButton2);
 
-        rowsInline.add(rowInline1);
+        rowsInline.add(rowInline1);                                                 //добавление кнопок в массив строк
 
         markupInline.setKeyboard(rowsInline);
         sm.setReplyMarkup(markupInline);

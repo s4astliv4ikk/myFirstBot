@@ -23,38 +23,16 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-//        var msg = update.getMessage();
-//        var user = msg.getChat();
-//        var id = msg.getChatId();
-//        var userName = user.getUserName();
-//        var firstName = user.getFirstName();
-//        var lastName = user.getLastName();
-
-
-
-//        switch (msg.getText()){                              //получение команды
-//            case "/start":
-//                if (Objects.isNull(userName)){
-//                    sendMessage(id, "Привет, " + user.getFirstName() + "!");
-//                }else {
-//                    sendMessage(id, "Привет, " + user.getUserName() + "!");
-//                };
-//                break;
-//            case "/help": sendMessage(id, user.getFirstName() + ", это мой первый бот на котором я отрабатываю азы Java.");
-//                break;
-//            default: sendMessage(id, "Введена неверная команда, попробуй /start или /help");
-//        }
-
         if (update.hasMessage() && update.getMessage().hasText()){
             var msg = update.getMessage();
             var user = msg.getChat();
             var id = msg.getChatId();
             forwardMessage(id,msg.getText(),msg.getMessageId()); //персылка сообщений в мой час с ботом
             System.out.println(update);                          //вывод данных в консоль
-            switch (msg.getText()){
+            switch (msg.getText()){                              //определение ввода
                 case "/start":
                     try {
-                        execute(Buttons.button(id));
+                        execute(Buttons.button(id));             //отправка сообщения с кнопками
                     } catch (TelegramApiException e) {
                         throw new RuntimeException(e);
                     };
@@ -62,6 +40,7 @@ public class Bot extends TelegramLongPollingBot {
                 default: sendMessage(id, "Введена неверная команда, попробуйте /start");
             }
         }else if (update.hasCallbackQuery()){
+            System.out.println(update);
             String callData = update.getCallbackQuery().getData();
             Long cId = update.getCallbackQuery().getMessage().getChatId();
             switch (callData){
