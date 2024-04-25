@@ -8,7 +8,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
 
-    final private String BOT_TOKEN = "6710916054:AAGphNqeNuzdMiF0LlCH657FdddiuloGfJ4";
+//    static final String BOT_TOKEN = "6710916054:AAGphNqeNuzdMiF0LlCH657FdddiuloGfJ4";
+    static final String BOT_TOKEN = System.getenv("TgBot-API");
     final private String BOT_NAME = "MyFirstBot";
 
     @Override
